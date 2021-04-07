@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     
@@ -15,20 +16,24 @@
 
 <body>
     <div id="root" class="container">
-        <input @keyup.enter="getMovies" v-model="search" type="text">
-        <button @click="getMovies">Search</button>
+        <input @keyup.enter="getMoviesAndTV" v-model="search" type="text">
+        <button @click="getMoviesAndTV">Search</button>
         <ul v-for="film in films">
             <li>
-                Titolo: {{film.title}}
+                Titolo: {{film.title}} {{film.name}}
             </li>
             <li>
-                Titolo Originale: {{film.original_title}}
+                Titolo Originale: {{film.original_title}} {{film.original_name}}
             </li>
             <li>
-                Lingua: {{film.original_language}}
+                Lingua:
+                <img v-if="hasFlag(film.original_language)" style="width: 50px;" :src="'img/' + (film.original_language) + '.png'" alt="">
+                <span v-else>{{film.original_language}}</span>
             </li>
             <li>
-                Voto: {{film.vote_average}}
+                Voto: {{getRate(film.vote_average)}}
+                <i v-for="n in getRate(film.vote_average)" class="fas fa-star"></i>
+                <i v-for="n in getRate2(film.vote_average)" class="far fa-star"></i>
             </li>
         </ul>
     </div>

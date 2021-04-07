@@ -46,6 +46,11 @@ var app = new Vue ({
             }
 
             return false;
+        },
+
+        getPoster: function(poster) {
+            let path = ("https://image.tmdb.org/t/p/w342/" + poster);
+            return path
         }
     },
 

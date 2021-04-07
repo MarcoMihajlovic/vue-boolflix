@@ -18,7 +18,10 @@
     <div id="root" class="container">
         <input @keyup.enter="getMoviesAndTV" v-model="search" type="text">
         <button @click="getMoviesAndTV">Search</button>
-        <ul v-for="film in films">
+        <ul style="list-style: none;" v-for="film in films">
+            <li>
+                <img :src="getPoster(film.poster_path)" alt="">
+            </li>
             <li>
                 Titolo: {{film.title}} {{film.name}}
             </li>

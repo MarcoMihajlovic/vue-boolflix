@@ -28,11 +28,11 @@ var app = new Vue ({
         },
 
         getRate: function(vote) {
-            return parseInt(vote/2);
+            return Math.round(vote/2);
         },
 
         getRate2: function(vote) {
-            vote = parseInt(vote/2);
+            vote = Math.round(vote/2);
             var empty = 0;
             for (var i = 0; (i + vote) < 5; i++) {
                 empty++;

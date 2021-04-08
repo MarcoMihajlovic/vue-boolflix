@@ -10,11 +10,12 @@ var app = new Vue ({
     methods: {
         getMoviesAndTV: function() {
             this.films = [];
+            const self = this;
             axios
                 .get('https://api.themoviedb.org/3/search/movie?api_key=5e2f325369ba7c109a4926654b75409f&language=it-IT&query=' + this.search)
                 .then((request) => {
                     request.data.results.forEach(element => {
-                        this.films.push(element);
+                        self.films.push(element);
                     })
                 })
             
@@ -22,9 +23,11 @@ var app = new Vue ({
                 .get('https://api.themoviedb.org/3/search/tv?api_key=5e2f325369ba7c109a4926654b75409f&language=it-IT&query=' + this.search)
                 .then((request) => {
                     request.data.results.forEach(element => {
-                        this.films.push(element);
+                        self.films.push(element);
                     })
                 })
+
+                self.search = "";
         },
 
         getRate: function(vote) {

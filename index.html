@@ -15,30 +15,67 @@
 </head>
 
 <body>
-    <div id="root" class="container">
-        <input @keyup.enter="getMoviesAndTV" v-model="search" type="text">
-        <button @click="getMoviesAndTV">Search</button>
-        <ul style="list-style: none;" v-for="film in films">
-            <li>
-                <img :src="getPoster(film.poster_path)" alt="">
-            </li>
-            <li>
-                Titolo: {{film.title}} {{film.name}}
-            </li>
-            <li>
-                Titolo Originale: {{film.original_title}} {{film.original_name}}
-            </li>
-            <li>
-                Lingua:
-                <img v-if="hasFlag(film.original_language)" style="width: 50px;" :src="'img/' + (film.original_language) + '.png'" alt="">
-                <span v-else>{{film.original_language}}</span>
-            </li>
-            <li>
-                Voto: {{getRate(film.vote_average)}}
-                <i v-for="n in getRate(film.vote_average)" class="fas fa-star"></i>
-                <i v-for="n in getRate2(film.vote_average)" class="far fa-star"></i>
-            </li>
-        </ul>
+    <div id="root">
+        <header>
+            <div class="container">
+                <img src="img/boolflix.png" alt="">
+                <div class="search">
+                    <input class="searchBar" placeholder="Cerca un film o serie TV" @keyup.enter="getMoviesAndTV" v-model="search" type="text">
+                    <button @click="getMoviesAndTV">Search</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="main">
+                <div class="cards">
+                    <div v-for="film in films" class="card">
+                        <img v-if="film.poster_path" :src="getPoster(film.poster_path)" alt="">
+                        <img v-else src="https://severinocanepa.com/wp-content/uploads/2020/02/Poster-404-Error.jpg" alt="">
+                        <div class="overlay">
+                            <span>Titolo:<br><strong>{{film.title}} {{film.name}}</strong></span>
+                            <span>Titolo Originale:<br><strong>{{film.original_title}} {{film.original_name}}</strong> </span>
+                            <div class="ratingAndLanguage">
+                                <span>Voto:</span>
+                                <i v-for="n in getRate(film.vote_average)" class="fas fa-star yellow"></i>
+                                <i v-for="n in getRate2(film.vote_average)" class="far fa-star yellow"></i>
+                            </div>
+                            <span>Trama:<br> 
+                                <p v-if="film.overview">{{film.overview}}</p> 
+                                <p v-else>Trama non disponibile</p>                    
+                            </span>
+                            <div class="ratingAndLanguage">
+                                <span>Lingua:</span>
+                                    <img v-if="hasFlag(film.original_language)" style="width: 50px;" :src="'img/' + (film.original_language) + '.png'" alt="">
+                                    <span v-else>{{film.original_language}}</span>
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+               <!--  <ul style="list-style: none;" v-for="film in films">
+                    <li>
+                        <img v-if="film.poster_path" :src="getPoster(film.poster_path)" alt="">
+                        <img v-else src="https://severinocanepa.com/wp-content/uploads/2020/02/Poster-404-Error.jpg" alt="">
+                    </li>
+                    <li>
+                        Titolo: {{film.title}} {{film.name}}
+                    </li>
+                    <li>
+                        Titolo Originale: {{film.original_title}} {{film.original_name}}
+                    </li>
+                    <li>
+                        Lingua:
+                        <img v-if="hasFlag(film.original_language)" style="width: 50px;" :src="'img/' + (film.original_language) + '.png'" alt="">
+                        <span v-else>{{film.original_language}}</span>
+                    </li>
+                    <li>
+                        Voto: {{getRate(film.vote_average)}}
+                        <i v-for="n in getRate(film.vote_average)" class="fas fa-star"></i>
+                        <i v-for="n in getRate2(film.vote_average)" class="far fa-star"></i>
+                    </li>
+                </ul> -->
+            </div>
+        </main>
     </div>
     <script src="js/script.js"></script>
 </body>

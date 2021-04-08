@@ -1,3 +1,117 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     
+}
+
+body {
+    height: 100vh;
+    min-width: 1070px;
+    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+}
+
+.container {
+    width: 95%;
+    margin: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header > .container > img {
+    width: 150px;
+}
+
+header {
+    width: 100%;
+    background-color: black;
+    
+}
+
+.search > input {
+    padding: 5px 0;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search > button {
+    padding: 5px;
+    background-color: brown;
+    border-width: 0;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+.main {
+    height: 100vh;
+    width: 100%;
+    background-color: #2e2e2e;
+    overflow-y: auto;
+}
+
+.card {
+    margin: 35px;
+    position: relative;
+
+}
+
+.card > img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 6%;
+    padding-top: 35px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    display: none;
+    z-index: 5;
+    color: white;
+    opacity: 85%;
+}
+
+.overlay > span {
+    margin: 10px 10px;
+}
+
+.card:hover .overlay {
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+    font-size: 20px;
+}
+
+.ratingAndLanguage {
+    display: flex;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.ratingAndLanguage > span {
+    margin-right: 10px;
+}
+
+.yellow {
+    color: gold;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
 }
